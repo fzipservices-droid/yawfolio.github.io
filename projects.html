@@ -1,0 +1,441 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects - My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Existing portfolio styles */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .portfolio-item {
+      background: #317c03;
+      padding: 20px;
+      border-radius: 8px;
+      color: #78d4e6;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .portfolio-item img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.5s ease;
+    }
+    .portfolio-item img:hover {
+      transform: scale(1.05);
+    }
+    .portfolio-item h3 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .portfolio-item p {
+      flex-grow: 1;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .portfolio-item span {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #d4f1c5;
+      text-align: center;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .filter-button {
+      background: #78d4e6;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: #317c03;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .filter-button:hover,
+    .filter-button.active {
+      background: #d4f1c5;
+      color: #114a00;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal {
+      background: #317c03;
+      color: #78d4e6;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .modal img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .modal h2 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .modal p {
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+    .modal span {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #d4f1c5;
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: #d4f1c5;
+      cursor: pointer;
+      font-weight: bold;
+      user-select: none;
+    }
+    .modal-close:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html" class="nav-link">About</a></li>
+      <li><a href="skills.html" class="nav-link">Skills</a></li>
+      <li><a href="projects.html" class="nav-link active">Projects</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="section">
+    <h1>Projects</h1>
+    <p>Some of my favorite projects I’ve worked on:</p>
+
+    <!-- Filter buttons -->
+    <div class="filter-buttons" id="filterButtons">
+      <button class="filter-button active" data-filter="all">All</button>
+      <button class="filter-button" data-filter="web">Web Development</button>
+      <button class="filter-button" data-filter="mobile">Mobile Apps</button>
+      <button class="filter-button" data-filter="design">Design</button>
+      <button class="filter-button" data-filter="backend">Backend</button>
+      <button class="filter-button" data-filter="fullstack">Full Stack</button>
+      <button class="filter-button" data-filter="ai">AI / Firebase</button>
+    </div>
+
+      <!-- Portfolio items with data-category for filtering -->
+      <div class="portfolio-item" data-category="web backend fullstack">
+        <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg" alt="Stubborn Codes Designers Website" />
+        <h3>Stubborn Codes Designers Website</h3>
+        <p>Web development company site with services, gallery, team bios, and contact info.</p>
+        <span>HTML · CSS · JavaScript · PHP</span>
+      </div>
+
+<div class="portfolio-grid" id="portfolioGrid">
+      <!-- Portfolio items with data-category for filtering -->
+      <div class="portfolio-item" data-category="web backend fullstack">
+        <img src="https://images.pexels.com/photos/3182769/pexels-photo-3182769.jpeg" alt="Job Portal Website" />
+        <h3>Job Portal Website</h3>
+        <p>Job listings, Applicant tracking, and employer dashboards.</p>
+        <span>Laravel · Vue.js· MySQL</span>
+      </div>
+
+
+      <div class="portfolio-item" data-category="web ai">
+        <img src="https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg" alt="Smart Attendance System" />
+        <h3>Smart Attendance System</h3>
+        <p>AI-powered attendance with login, signup, CSV export, and dark mode features.</p>
+        <span>JavaScript · HTML · CSS · Firebase</span>
+      </div>
+
+      <div class="portfolio-item" data-category="web design">
+        <img src="https://images.pexels.com/photos/4145191/pexels-photo-4145191.jpeg" alt="Photography Landing Page" />
+        <h3>Photography Landing Page</h3>
+        <p>Landing page designed for photographers to showcase portfolios elegantly.</p>
+        <span>HTML5 · CSS3 · JavaScript</span>
+      </div>
+
+       
+
+      <div class="portfolio-item" data-category="web fullstack">
+        <img src="https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg" alt="Corporate Website Redesign" />
+        <h3>Corporate Website Redesign</h3>
+        <p>Revamped corporate website with a clean and professional look.</p>
+        <span>React · CSS · JavaScript</span>
+      </div>
+
+      <diV class="portfolio-item"  data-category="web fullstack">
+        <img src="https://images.pexels.com/photos/3183147/pexels-photo-3183147.jpeg" alt="Fitness App" />
+        <h3>Fitness Tracker App</h3>
+        <p>Track workouts and nutrition with social sharing features.</p>
+        <span>React Native · Firebase · UX</span>
+      </div>
+
+      <div class="portfolio-item" data-category="web fullstack">
+        <img src="https://images.pexels.com/photos/4145191/pexels-photo-4145191.jpeg" alt="Educational Platform" />
+        <h3>Online Learning Platform</h3>
+        <p>Interactive courses with quizzes and progress tracking.</p>
+        <span>React · Node.js · MongoDB</span>
+      </div>
+
+       <div class="portfolio-item"data-category="web fullstack">
+        <img src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg" alt="Portfolio Website" />
+        <h3>Portfolio Website</h3>
+        <p>Interactive portfolio with animations and smooth layout.</p>
+        <span>React · Animations · UX</span>
+      </div>
+
+
+ <div class="portfolio-item"data-category="design mobile">
+        <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg" alt="Chat Application" />
+        <h3>Real-time Chat App</h3>
+        <p>Real-time messaging app with Socket.IO and Node.js backend.</p>
+        <span>Node.js · Socket.IO · Express</span>
+      </div>
+
+      
+      <di class="portfolio-item"  data-category="design mobile">
+        <img src="https://images.pexels.com/photos/3182815/pexels-photo-3182815.jpeg" alt="Blog CMS" />
+        <h3>Content Management System</h3>
+        <p>Custom CMS with markdown support and SEO tools.</p>
+        <span>Next.js · Node.js · MongoDB</span>
+      </div>
+
+      <div class="portfolio-item"  data-category="web backend fullstack"> 
+        <img src="https://images.pexels.com/photos/3184303/pexels-photo-3184303.jpeg" alt="Restaurant Website" />
+        <h3>Restaurant Website</h3>
+        <p>Online menu, booking system, and customer reviews integration.</p>
+        <span>React · Firebase · UI/UX</span>
+      </div>
+
+       
+
+      <div class="portfolio-item" data-category="design mobile">
+        <img src="https://images.pexels.com/photos/3184349/pexels-photo-3184349.jpeg" alt="Music Streaming App" />
+        <h3>Music Streaming Service</h3>
+        <p>Stream and curate playlists with social sharing features.</p>
+        <span>React · Node.js · MongoDB</span>
+      </div>
+
+      <div class="portfolio-item"  data-category="web backend fullstack">
+        <img src="https://images.pexels.com/photos/3184364/pexels-photo-3184364.jpeg" alt="Finance Tracker" />
+        <h3>Personal Finance Tracker</h3>
+        <p>Track expenses and budgets with charts and alerts.</p>
+        <span>Angular · Firebase · Chart.js</span>
+      </div>
+
+      <div class="portfolio-item" data-category=" web ai">
+        <img src="https://images.pexels.com/photos/3184386/pexels-photo-3184386.jpeg" alt="Job Portal" />
+        <h3>Job Portal Website</h3>
+        <p>Job search and application platform with employer dashboard.</p>
+        <span>React · Node.js · Express</span>
+      </div>
+
+      <div class="portfolio-item"data-category="web backend fullstack">
+        <img src="https://images.pexels.com/photos/3184401/pexels-photo-3184401.jpeg" alt="Social Network" />
+        <h3>Social Networking Site</h3>
+        <p>Connect and share updates with friends and communities.</p>
+        <span>React · Firebase · GraphQL</span>
+      </div>
+
+      <div class="portfolio-item"data-category="web fullstack">
+        <img src="https://images.pexels.com/photos/3184437/pexels-photo-3184437.jpeg" alt="Healthcare App" />
+        <h3>Healthcare Appointment App</h3>
+        <p>Book and manage doctor appointments with notifications.</p>
+        <span>React Native · Firebase · UX Design</span>
+      </div>
+
+      <div class="portfolio-item" data-category="web design">
+        <img src="https://images.pexels.com/photos/3184451/pexels-photo-3184451.jpeg" alt="News Aggregator" />
+        <h3>News Aggregator Website</h3>
+        <p>Curated news from multiple sources with personalized feeds.</p>
+        <span>Vue.js · Node.js · API Integration</span>
+      </div>
+
+      <div class="portfolio-item" data-category="web fullstack">
+        <img src="https://images.pexels.com/photos/3184474/pexels-photo-3184474.jpeg" alt="Travel Blog" />
+        <h3>Travel Blog</h3>
+        <p>Photo-rich blog platform for travel enthusiasts and guides.</p>
+        <span>React · Gatsby · GraphQL</span>
+      </div>
+
+      <div class="portfolio-item"data-category="web ai">
+        <img src="https://images.pexels.com/photos/3184502/pexels-photo-3184502.jpeg" alt="Food Delivery App" />
+        <h3>Food Delivery App</h3>
+        <p>Order food with real-time tracking and easy payments.</p>
+        <span>React Native · Firebase · UX</span>
+      </div>
+
+      
+      <div class="portfolio-item" data-category="web design">
+        <img src="https://images.pexels.com/photos/3184554/pexels-photo-3184554.jpeg" alt="Task Management Tool" />
+        <h3>Task Management Tool</h3>
+        <p>Organize projects and collaborate with teams effectively.</p>
+        <span>Vue.js · Firebase · UX Design</span>
+      </div>
+
+      <div class="portfolio-item"data-category="web ai">
+        <img src="https://images.pexels.com/photos/3184571/pexels-photo-3184571.jpeg" alt="Virtual Reality Experience" />
+        <h3>Virtual Reality Experience</h3>
+        <p>Immersive VR app for training and education.</p>
+        <span>Unity · C# · UX Design</span>
+      </div>
+
+      <div class="portfolio-item"data-category="web design">
+        <img src="https://images.pexels.com/photos/3184584/pexels-photo-3184584.jpeg" alt="AI Chatbot" />
+        <h3>AI Chatbot Integration</h3>
+        <p>Smart chatbot to improve customer support and engagement.</p>
+        <span>Node.js · Dialogflow · React</span>
+      </div>
+
+      <div class="portfolio-item"data-category="web fullstack">
+        <img src="https://images.pexels.com/photos/3184603/pexels-photo-3184603.jpeg" alt="Crypto Trading Platform" />
+        <h3>Crypto Trading Platform</h3>
+        <p>Real-time trading interface with secure transactions.</p>
+        <span>React · Node.js · WebSockets</span>
+      </div>
+
+      <div class="portfolio-item"data-category="web design">
+        <img src="https://images.pexels.com/photos/3184618/pexels-photo-3184618.jpeg" alt="AI-Powered Analytics" />
+        <h3>AI-Powered Analytics</h3>
+        <p>Data analytics dashboard with predictive AI insights.</p>
+        <span>Python · React · TensorFlow</span>
+      </div>
+
+       
+       
+      <!-- add more projects similarly, each with proper data-category -->
+
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <div class="modal" role="document">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+      <img src="" alt="" id="modalImage" />
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <span id="modalTech"></span>
+    </div>
+  </div>
+
+  <script>
+    // Filtering functionality
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+
+        portfolioItems.forEach(item => {
+          if (filter === 'all') {
+            item.style.display = 'flex';
+          } else {
+            const categories = item.getAttribute('data-category').split(' ');
+            if (categories.includes(filter)) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+
+    // Modal functionality
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalTech = document.getElementById('modalTech');
+
+    portfolioItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').src;
+        const imgAlt = item.querySelector('img').alt;
+        const title = item.querySelector('h3').textContent;
+        const description = item.querySelector('p').textContent;
+        const tech = item.querySelector('span').textContent;
+
+        modalImage.src = imgSrc;
+        modalImage.alt = imgAlt;
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        modalTech.textContent = tech;
+
+        modalOverlay.style.display = 'flex';
+        modalOverlay.focus();
+      });
+    });
+
+    modalClose.addEventListener('click', () => {
+      modalOverlay.style.display = 'none';
+    });
+
+    // Close modal on outside click
+    modalOverlay.addEventListener('click', e => {
+      if (e.target === modalOverlay) {
+        modalOverlay.style.display = 'none';
+      }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape" && modalOverlay.style.display === 'flex') {
+        modalOverlay.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
